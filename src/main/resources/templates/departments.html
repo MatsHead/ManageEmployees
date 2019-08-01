@@ -1,0 +1,55 @@
+
+<header th:insert="fragments/header.html"></header>
+<div class="page-header">
+    <h1>Here You Can work with Departments data</h1>
+</div>
+<hr>
+<div class="container">
+    <div>
+        <ul class="text-center">
+            <a href="/departments/add" class="btn btn-success">Add new Department</a>
+        </ul>
+    </div>
+<hr>
+<h3 class="text-success" id="afterDeleteText-success"></h3>
+<h3 class="text-danger" id="afterDeleteText-fail"></h3>
+    <div class="table-emp">
+        <table class="table table-bordered table-auto">
+            <thead class="thead-dark text-center">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Country</th>
+                <th scope="col">City</th>
+                <th scope="col">Street</th>
+                <th scope="col">Flat</th>
+                <th scope="col">House</th>
+                <th scope="col">ZipCode</th>
+                <th scope="col">Email</th>
+                <th scope="col">Delete</th>
+                <th scope="col">Edit</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="department : ${departments}" th:id="${department.id}">
+                <td scope="col" th:text="${department.id}"/>
+                <td scope="col" th:text="${department.name}"/>
+                <td scope="col" th:text="${department.address.country}"/>
+                <td scope="col" th:text="${department.address.city}"/>
+                <td scope="col" th:text="${department.address.street}"/>
+                <td scope="col" th:text="${department.address.flat}"/>
+                <td scope="col" th:text="${department.address.house}"/>
+                <td scope="col" th:text="${department.address.zipCode}"/>
+                <td scope="col" th:text="${department.address.email}"/>
+                <td scope="col"><a class="btn btn-danger text-white" th:onclick="'deleteDepartment(\'' + ${department.id} + '\');'">Delete</a> </td>
+                <td scope="col"><a th:href="'/departments/'+${department.id}+'/edit'" class="btn btn-secondary text-white" th:id="${department.id}">Edit</a> </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<div th:replace="fragments/footer.html"></div>
+</body>
+</html>

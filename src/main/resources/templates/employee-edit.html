@@ -1,0 +1,62 @@
+
+<head th:insert="fragments/header.html">
+
+<div class="page-header text-center">
+    <h1>Correct data and click submit otherwise You can click back</h1>
+</div>
+    <hr>
+<div class="container col-xl-5">
+    <form class = "center"  th:object="${employee}" action="/employees" method="post">
+        <div class="form-group">
+            <label for="id-field" class="col-form-label">Id</label>
+            <input id ="id-field"type ="text" class="form-control col-sm-10>" th:field="*{id}" readonly>
+            <label for="name-field" class="col-form-label">Name</label>
+            <input id="name-field" type ="text" class="form-control" th:field="*{name}">
+            <label for="surname-field" class="col-form-label">Surname</label>
+            <input id="surname-field" type ="text" class="form-control" th:field="*{surname}" required>
+            <label for="pesonalId-field" class="col-form-label">Personal Id</label>
+            <input id= "pesonalId-field" type ="text" class="form-control" th:field="*{personalId}" required>
+            <label for="country-field" class="col-form-label">Country</label>
+            <input id ="country-field" type ="text" class="form-control" th:field="*{address.country}" required>
+            <label for="city-field" class="col-form-label">City</label>
+            <input id ="city-field" type ="text" class="form-control" th:field="*{address.city}" required>
+            <label for="street-field" class="col-form-label">Street</label>
+            <input id="street-field" type ="text" class="form-control" th:field="*{address.street}" required>
+            <label for="flat-field" class="col-form-label">Flat</label>
+            <input id = "flat-field" type ="text" class="form-control" th:field="*{address.flat}">
+            <label for="house-field" class="col-form-label">House</label>
+            <input id ="house-field" type ="text" class="form-control" th:field="*{address.house}">
+            <label for="zipCode-field" class="col-form-label">ZIP code</label>
+            <input id="zipCode-field" type ="text" class="form-control" th:field="*{address.zipCode}" required>
+            <label for="email-field" class="col-form-label">Email address</label>
+            <input id ="email-field" type ="text" class="form-control" th:field="*{address.email}" required>
+
+            <div class="form-group">
+                <label for="select-positions">Select list:</label>
+                <select id= "select-positions" class="form-control" th:field="*{position}">
+                    <option th:if="*{position}" th:value="*{position}" selected></option>
+                    <option th:th:unless="*{position}" value="" selected>Select position ...</option>
+                    <option th:each="positionSelect : ${positions}"
+                        th:value="${positionSelect}" th:text="${positionSelect}"/>
+                </select>
+            </div>
+            <label for="salary-field" class="col-form-label">Salary</label>
+            <input id ="salary-field" type ="text" class="form-control" th:field="*{salary}">
+            <div class="custom-control custom-checkbox mb-3">
+                <input type="checkbox" class="custom-control-input" id= "children-field" th:field="*{children}">
+                <label class="custom-control-label" for="children-field">Employee has children?</label>
+            </div>
+
+        </div>
+        <div class="row-buttons">
+            <div class="col-sm-5">
+                <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+            <div class="col-sm-5">
+                <a href="/employees" class="btn btn-danger">Back to Employees</a>
+            </div>
+        </div>
+        </form>
+</div>
+<hr>
+<div th:replace="fragments/footer.html"></div>

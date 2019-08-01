@@ -1,0 +1,77 @@
+
+<head th:insert="fragments/header.html">
+
+
+<div class="page-header">
+    <h1>Here You Can work with employees data</h1>
+</div>
+
+<div class="container">
+    <div>
+        <ul class="text-center">
+           <li class="list-inline-item">
+               <button class="btn btn-secondary" id="employees-edit" onclick="callEditModal()">Edit Customer</button>
+           </li>
+            <li class="list-inline-item">
+                <button class="btn btn-info" id="employees-show-one" onclick="callShowModal()">Show One Customer</button>
+            </li>
+            <li class="list-inline-item">
+                <a href = "/employees/add" class="btn btn-success" id="employees-add">Add new customer</a>
+            </li>
+            <li class="list-inline-item">
+                <button class="btn btn-danger" id="employees-delete" onclick="callDeleteModal()">Delete Customer</button>
+            </li>
+        </ul>
+    </div>
+</div>
+<hr>
+    <h3 class="text-success" id="afterDeleteText-success"></h3>
+    <h3 class="text-danger" id="afterDeleteText-fail"></h3>
+<div class="table-auto">
+    <table class="table table-bordered table-employees">
+        <thead class="thead-dark text-center">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Surname</th>
+            <th scope="col">Personal Id</th>
+            <th scope="col">Country</th>
+            <th scope="col">City</th>
+            <th scope="col">Street</th>
+            <th scope="col">Flat</th>
+            <th scope="col">House</th>
+            <th scope="col">ZipCode</th>
+            <th scope="col">Email</th>
+            <th scope="col">Position</th>
+            <th scope="col">Salary</th>
+            <th scope="col">Children?</th>
+            <th scope="col">Department ID</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="employee : ${employees}" th:id="${employee.id}">
+            <td scope="col" th:text="${employee.id}"/>
+            <td scope="col" th:text="${employee.name}"/>
+            <td scope="col" th:text="${employee.surname}"/>
+            <td scope="col" th:text="${employee.id}"/>
+            <td scope="col" th:text="${employee.address.country}"/>
+            <td scope="col" th:text="${employee.address.city}"/>
+            <td scope="col" th:text="${employee.address.street}"/>
+            <td scope="col" th:text="${employee.address.flat}"/>
+            <td scope="col" th:text="${employee.address.house}"/>
+            <td scope="col" th:text="${employee.address.zipCode}"/>
+            <td scope="col" th:text="${employee.address.email}"/>
+            <td scope="col" th:text="${employee.position}"/>
+            <td scope="col" th:text="${employee.salary}"/>
+            <td scope="col" th:text="${employee.children}"/>
+            <td scope="col" th:if="${employee.department}" th:text="${employee.department.id}"/>
+            <td scope="col" th:unless="${employee.department}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div th:replace="fragments/modals/modal-edit.html"></div>
+<div th:replace="fragments/modals/modal-delete.html"></div>
+<div th:replace="fragments/modals/modal-show-one.html"></div>
+<div th:replace="fragments/footer.html"></div>
+
