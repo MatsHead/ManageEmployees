@@ -1,4 +1,4 @@
-package pl.matshead.sec.config;
+package pl.matshead.examapp.security_configuration;
 
 
 

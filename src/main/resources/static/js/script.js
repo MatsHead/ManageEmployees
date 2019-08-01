@@ -1,5 +1,8 @@
 const id_text_fail_ajax = 'afterDeleteText-fail', id_text_success_ajax = 'afterDeleteText-success';
 const contentType = 'application/json';
+const employeeApiUrl = 'http://localhost:8080/api/employees/';
+const departmentApiUrl = 'http://localhost:8080/api/departments/';
+
 // functions For modal edit
 function callEditModal(){
     toggleModalWithId('modalEdit');
@@ -10,7 +13,7 @@ function modalEditContinue() {
     setText(id_text_success_ajax, '');
     var providedId = $('#employeeId-edit').val();
     if (!isNaN(providedId)) {
-        window.location.replace('http://localhost:8080/employees/' + providedId + '/edit');
+        window.location.replace(employeeApiUrl+ providedId + '/edit');
     } else {
         setText(id_text_fail_ajax, 'Please provide a number in modal view.');
         toggleModalWithId('modalEdit');
@@ -26,7 +29,7 @@ function modalShowContinue() {
     setText(id_text_success_ajax, '');
     var providedId = $('#employeeId-show-one').val();
     if (!isNaN(providedId)) {
-        window.location.replace('http://localhost:8080/employees/' + providedId + '/show-one');
+        window.location.replace(employeeApiUrl + providedId + '/show-one');
     } else {
         setText(id_text_fail_ajax, 'Please provide a number in modal view.');
         toggleModalWithId('modal-show-one');
@@ -44,7 +47,7 @@ function modalDeleteContinue() {
     if (!isNaN(providedId)){
         $.ajax({
             type: 'DELETE',
-            url: '/employees/' + providedId + '/delete',
+            url: employeeApiUrl + providedId + '/delete',
             contentType: contentType,
             success: function(result) {
                 deleteRowInTableById(providedId);
@@ -66,7 +69,7 @@ function modalDeleteContinue() {
 function deleteDepartment(id){
     $.ajax({
         type: 'DELETE',
-        url: '/departments/' + id + '/delete',
+        url: departmentApiUrl + id + '/delete',
         contentType: contentType,
         success: function(result) {
             deleteRowInTableById(id);

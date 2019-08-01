@@ -18,11 +18,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@RequestMapping("/api")
 public class EmployeeController {
     @Autowired
     private EmployeeRepository employeeRepository;
 
-    @GetMapping("/")
+    @GetMapping("/home")
     public String getHome(){
         return "home";
     }
@@ -59,7 +60,7 @@ public class EmployeeController {
 
         }
         employeeRepository.save(employee);
-        return "redirect:/employees";
+        return "redirect:/api/employees";
     }
     @DeleteMapping("/employees/{id}/delete")
     public String deleteUserById(@PathVariable Integer id, ModelMap modelMap) {

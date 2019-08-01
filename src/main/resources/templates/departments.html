@@ -7,7 +7,7 @@
 <div class="container">
     <div>
         <ul class="text-center">
-            <a href="/departments/add" class="btn btn-success">Add new Department</a>
+            <a href="/api/departments/add" class="btn btn-success">Add new Department</a>
         </ul>
     </div>
 <hr>
@@ -42,7 +42,7 @@
                 <td scope="col" th:text="${department.address.zipCode}"/>
                 <td scope="col" th:text="${department.address.email}"/>
                 <td scope="col"><a class="btn btn-danger text-white" th:onclick="'deleteDepartment(\'' + ${department.id} + '\');'">Delete</a> </td>
-                <td scope="col"><a th:href="'/departments/'+${department.id}+'/edit'" class="btn btn-secondary text-white" th:id="${department.id}">Edit</a> </td>
+                <td scope="col"><a th:href="'/api/departments/'+${department.id}+'/edit'" class="btn btn-secondary text-white" th:id="${department.id}">Edit</a> </td>
             </tr>
             </tbody>
         </table>

@@ -1,16 +1,17 @@
-package pl.matshead.sec.service;
+package pl.matshead.examapp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import pl.matshead.sec.model.Role;
-import pl.matshead.sec.model.User;
-import pl.matshead.sec.repository.RoleRepository;
-import pl.matshead.sec.repository.UserRepository;
+import pl.matshead.examapp.model.security_model.Role;
+import pl.matshead.examapp.model.security_model.User;
+import pl.matshead.examapp.repositories.security_repositories.RoleRepository;
+import pl.matshead.examapp.repositories.security_repositories.UserRepository;
+
 
 import java.util.Arrays;
 import java.util.HashSet;
+
 
 @Service("userService")
 public class UserService {

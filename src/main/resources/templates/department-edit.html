@@ -6,7 +6,7 @@
     </div>
     <hr>
     <div class="container col-xl-5">
-        <form class = "center"  th:object="${department}" action="/departments" method="post">
+        <form class = "center"  th:object="${department}" action="/api/departments" method="post">
             <div class="form-group">
                 <label for="d-id-field" class="col-form-label">Id</label>
                 <input id ="d-id-field"type ="text" class="form-control col-sm-10>" th:field="*{id}" readonly>
@@ -32,7 +32,7 @@
                     <button type="submit" class="btn btn-success">Submit</button>
                 </div>
                 <div class="col-sm-5">
-                    <a href="/departments" class="btn btn-danger">Back to Departments</a>
+                    <a href="/api/departments" class="btn btn-danger">Back to Departments</a>
                 </div>
             </div>
         </form>

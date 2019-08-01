@@ -1,4 +1,4 @@
-package pl.matshead.sec.model;
+package pl.matshead.examapp.model.security_model;
 
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;

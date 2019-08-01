@@ -10,6 +10,7 @@ import pl.matshead.examapp.model.Department;
 import pl.matshead.examapp.repositories.DepartmentRepository;
 
 @Controller
+@RequestMapping("/api")
 public class DepartmentController {
     @Autowired
     private DepartmentRepository departmentRepository;
@@ -36,7 +37,7 @@ public class DepartmentController {
     @PostMapping("/departments")
     public String saveDepartment(@ModelAttribute Department department) {
         departmentRepository.save(department);
-        return "redirect:/departments";
+        return "redirect:/api/departments";
     }
     @GetMapping("/departments/{id}/edit")
     public String editDepartment(@PathVariable Integer id, ModelMap modelMap){

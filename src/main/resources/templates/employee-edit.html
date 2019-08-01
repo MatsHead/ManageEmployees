@@ -6,7 +6,7 @@
 </div>
     <hr>
 <div class="container col-xl-5">
-    <form class = "center"  th:object="${employee}" action="/employees" method="post">
+    <form class = "center"  th:object="${employee}" action="/api/employees" method="post">
         <div class="form-group">
             <label for="id-field" class="col-form-label">Id</label>
             <input id ="id-field"type ="text" class="form-control col-sm-10>" th:field="*{id}" readonly>
