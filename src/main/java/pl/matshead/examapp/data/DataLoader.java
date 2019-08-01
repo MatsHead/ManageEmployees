@@ -48,7 +48,7 @@ public class DataLoader implements CommandLineRunner {
             employeeRepository.save(new Employee(
                     "Mateusz",
                     "Jezierski",
-                    96020800000l,
+                    "96020800000",
                     new Address(
                             "Poland", "Warszawa", "Melsztyńska", "4/10 37", "", "02-537",
                             "jezierski.mat@gmail.com"),
@@ -59,7 +59,7 @@ public class DataLoader implements CommandLineRunner {
             employeeRepository.save(new Employee(
                     "Jacek",
                     "Placek",
-                    96020833300l,
+                    "96020833300",
                     new Address(
                             "England", "London", "Bakery", "", "12B", "02-111",
                             "jaco-placo.@gmail.com"),

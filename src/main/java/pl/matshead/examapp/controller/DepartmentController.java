@@ -4,10 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.matshead.examapp.model.Address;
 import pl.matshead.examapp.model.Department;
 import pl.matshead.examapp.repositories.DepartmentRepository;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/api")
@@ -35,7 +38,10 @@ public class DepartmentController {
         return "department-edit";
     }
     @PostMapping("/departments")
-    public String saveDepartment(@ModelAttribute Department department) {
+    public String saveDepartment(@Valid Department department, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "department-edit";
+        }
         departmentRepository.save(department);
         return "redirect:/api/departments";
     }

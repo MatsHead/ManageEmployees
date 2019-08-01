@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @NoArgsConstructor
@@ -19,7 +21,8 @@ public class Department {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
-//    @NotBlank(message="Name not be blank!")
+    @NotNull(message="Name not be blank!")
+    @Size(min=3, max = 30)
     private String name;
     /**
      * Address is represents by other object but hold in one table together with Department

@@ -4,11 +4,10 @@ package pl.matshead.examapp.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Type;
+import pl.matshead.examapp.model.validator.PersonalIdConstraint;
 import pl.matshead.examapp.static_values.Position;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -21,18 +20,20 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-//    @NotBlank(message="Name not be blank!")
-//    @Size(min=2, max=30)
+    @NotNull()
+    @Size(min=3, max=30, message="Name not be empty, provide at least 3 characters")
     private String name;
-//    @NotBlank(message="Surname not be blank!")
-//    @Size(min=2, max=30)
+    @NotNull()
+    @Size(min=3, max=30, message="Surname not be empty, provide at least 3 characters")
     private String surname;
-    private Long personalId;
+    @NotNull(message = "Provide personal identity, format number")
+    // Custom Annotation to valid proper value for personal id
+    @PersonalIdConstraint
+    private String personalId;
     /**
      * Address is represents by other object but hold in one table together with Employee
      */
     @Embedded
-//    @NotNull(message="Address not be blank!")
     private Address address;
     private Position position;
     private double salary;
@@ -40,7 +41,7 @@ public class Employee {
     @OneToOne
     private Department department;
 
-    public Employee(String name, String surname, Long personalId, Address address, Position position, double salary, boolean children, Department department) {
+    public Employee(String name, String surname, String personalId, Address address, Position position, double salary, boolean children, Department department) {
         this.name = name;
         this.surname = surname;
         this.personalId = personalId;
@@ -50,7 +51,7 @@ public class Employee {
         this.children = children;
     }
 
-    public Employee(String name, String surname, Long personalId, Address address,  Position position, double salary, boolean children) {
+    public Employee(String name, String surname, String personalId, Address address,  Position position, double salary, boolean children) {
         this.name = name;
         this.surname = surname;
         this.personalId = personalId;

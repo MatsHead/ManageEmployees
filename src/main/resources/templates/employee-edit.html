@@ -2,7 +2,7 @@
 <head th:insert="fragments/header.html">
 
 <div class="page-header text-center">
-    <h1>Correct data and click submit otherwise You can click back</h1>
+    <h1>Provide data in fields and click submit</h1>
 </div>
     <hr>
 <div class="container col-xl-5">
@@ -12,10 +12,13 @@
             <input id ="id-field"type ="text" class="form-control col-sm-10>" th:field="*{id}" readonly>
             <label for="name-field" class="col-form-label">Name</label>
             <input id="name-field" type ="text" class="form-control" th:field="*{name}">
+            <p class ="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</p>
             <label for="surname-field" class="col-form-label">Surname</label>
-            <input id="surname-field" type ="text" class="form-control" th:field="*{surname}" required>
-            <label for="pesonalId-field" class="col-form-label">Personal Id</label>
-            <input id= "pesonalId-field" type ="text" class="form-control" th:field="*{personalId}" required>
+            <input id="surname-field" type ="text" class="form-control" th:field="*{surname}" >
+            <p class ="text-danger" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">Name Error</p>
+            <label for="personalId-field" class="col-form-label">Personal Id</label>
+            <input id= "personalId-field" type ="number"  class="form-control" th:field="*{personalId}" >
+            <p class ="text-danger" th:if="${#fields.hasErrors('personalId')}" th:errors="*{personalId}">Name Error</p>
             <label for="country-field" class="col-form-label">Country</label>
             <input id ="country-field" type ="text" class="form-control" th:field="*{address.country}" required>
             <label for="city-field" class="col-form-label">City</label>
@@ -27,15 +30,14 @@
             <label for="house-field" class="col-form-label">House</label>
             <input id ="house-field" type ="text" class="form-control" th:field="*{address.house}">
             <label for="zipCode-field" class="col-form-label">ZIP code</label>
-            <input id="zipCode-field" type ="text" class="form-control" th:field="*{address.zipCode}" required>
+            <input id="zipCode-field" type ="text" class="form-control" th:field="*{address.zipCode}" >
             <label for="email-field" class="col-form-label">Email address</label>
-            <input id ="email-field" type ="text" class="form-control" th:field="*{address.email}" required>
-
+            <input id ="email-field" type ="email" class="form-control" th:field="*{address.email}" required>
             <div class="form-group">
                 <label for="select-positions">Select list:</label>
-                <select id= "select-positions" class="form-control" th:field="*{position}">
+                <select id= "select-positions" class="form-control" th:field="*{position}" required>
                     <option th:if="*{position}" th:value="*{position}" selected></option>
-                    <option th:th:unless="*{position}" value="" selected>Select position ...</option>
+                    <option th:th:unless="*{position}" value="" selected>Choose position</option>
                     <option th:each="positionSelect : ${positions}"
                         th:value="${positionSelect}" th:text="${positionSelect}"/>
                 </select>

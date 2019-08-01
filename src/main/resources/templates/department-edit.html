@@ -11,11 +11,12 @@
                 <label for="d-id-field" class="col-form-label">Id</label>
                 <input id ="d-id-field"type ="text" class="form-control col-sm-10>" th:field="*{id}" readonly>
                 <label for="d-name-field" class="col-form-label">Name</label>
-                <input id="d-name-field" type ="text" class="form-control" th:field="*{name}" required>
+                <input id="d-name-field" type ="text" class="form-control" th:field="*{name}" >
+                <p class ="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</p>
                 <label for="d-country-field" class="col-form-label">Country</label>
-                <input id ="d-country-field" type ="text" class="form-control" th:field="*{address.country}" required>
+                <input id ="d-country-field" type ="text" class="form-control" th:field="*{address.country}"required>
                 <label for="d-city-field" class="col-form-label">City</label>
-                <input id ="d-city-field" type ="text" class="form-control" th:field="*{address.city}" required>
+                <input id ="d-city-field" type ="text" class="form-control" th:field="*{address.city}"required>
                 <label for="d-street-field" class="col-form-label">Street</label>
                 <input id="d-street-field" type ="text" class="form-control" th:field="*{address.street}" required>
                 <label for="d-flat-field" class="col-form-label">Flat</label>
@@ -25,7 +26,7 @@
                 <label for="d-zipCode-field" class="col-form-label">ZIP code</label>
                 <input id="d-zipCode-field" type ="text" class="form-control" th:field="*{address.zipCode}">
                 <label for="d-email-field" class="col-form-label">Email address</label>
-                <input id ="d-email-field" type ="text" class="form-control" th:field="*{address.email}" required>
+                <input id ="d-email-field" type ="email" class="form-control" th:field="*{address.email}" required>
             </div>
             <div class="row-buttons">
                 <div class="col-sm-5">

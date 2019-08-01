@@ -34,15 +34,22 @@ public class EmployeeController {
     }
     @GetMapping("/employees/{id}/edit")
     public String editSingleEmployee(@PathVariable Integer id, ModelMap modelMap){
-        modelMap.put("employee", employeeRepository.findById(id).get());
+        Employee employee = new Employee();
+        employee.setAddress(new Address());
+        modelMap.put("employee", employeeRepository.findById(id).orElse(employee));
         modelMap.put("positions", Position.values());
         return "employee-edit";
     }
     @GetMapping("/employees/{id}/show-one")
     public String showOneEmployee(@PathVariable Integer id, ModelMap modelMap) {
-        List<Employee> employees = new ArrayList<Employee>(){{add(employeeRepository.findById(id).get());}};
-        if (employees.size() == 1)
-        modelMap.put("employees" , employees);
+        Employee employee = employeeRepository.findById(id).orElse(null);
+        List<Employee> employees = new ArrayList<>();
+        if(employee == null){
+            modelMap.put("employees", employeeRepository.findAll());
+        } else {
+            employees.add(employee);
+            modelMap.put("employees", employees);
+        }
         return "employees";
     }
     @GetMapping("/employees/add")
