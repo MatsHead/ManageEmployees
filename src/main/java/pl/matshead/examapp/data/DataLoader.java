@@ -3,13 +3,13 @@ package pl.matshead.examapp.data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import pl.matshead.examapp.excelHandlerPackage.EmployeesExcelHandler;
 import pl.matshead.examapp.model.Address;
 import pl.matshead.examapp.model.Department;
 import pl.matshead.examapp.model.Employee;
 import pl.matshead.examapp.repositories.DepartmentRepository;
 import pl.matshead.examapp.repositories.EmployeeRepository;
 import pl.matshead.examapp.static_values.Position;
-
 
 
 /**
@@ -22,6 +22,8 @@ public class DataLoader implements CommandLineRunner {
     private EmployeeRepository employeeRepository;
     @Autowired
     private DepartmentRepository departmentRepository;
+
+    private static EmployeesExcelHandler test;
 
     @Override
     public void run(String... args) throws Exception {
@@ -70,4 +72,5 @@ public class DataLoader implements CommandLineRunner {
         }
 
     }
+
 }
