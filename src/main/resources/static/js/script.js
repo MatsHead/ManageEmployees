@@ -11,7 +11,7 @@ function callEditModal(){
 function modalEditContinue() {
     setText(id_text_fail_ajax, '');
     setText(id_text_success_ajax, '');
-    var providedId = $('#employeeId-edit').val();
+    let providedId = $('#employeeId-edit').val();
     if (!isNaN(providedId)) {
         window.location.replace(employeeApiUrl+ providedId + '/edit');
     } else {
@@ -41,7 +41,7 @@ function callDeleteModal(){
     toggleModalWithId('modal-delete');
 }
 function modalDeleteContinue() {
-    var providedId = $('#employeeId-delete').val();
+    let providedId = $('#employeeId-delete').val();
     setText(id_text_fail_ajax, '');
     setText(id_text_success_ajax, '');
     if (!isNaN(providedId)){
@@ -84,6 +84,40 @@ function deleteDepartment(id){
         }
     });
 }
+function deleteDepartment(id){
+    $.ajax({
+        type: 'DELETE',
+        url: departmentApiUrl + id + '/delete',
+        contentType: contentType,
+        success: function(result) {
+            deleteRowInTableById(id);
+            setText(id_text_success_ajax, "Department with id: " + id + " has been deleted successfully.");
+            setText(id_text_fail_ajax, "");
+            toggleModalWithId('modal-delete');
+
+        },error: function(){
+            setText(id_text_fail_ajax, "Department with id: " + id + " has NOT been deleted successfully." +
+                " Check if this department exists.")
+            toggleModalWithId('modal-delete');
+        }
+    });
+}
+function exportEmployees(){
+    $.ajax({
+        type: 'POST',
+        url: employeeApiUrl + 'export',
+        contentType: contentType,
+        success: function(result) {
+            setText(id_text_fail_ajax, "");
+            setText(id_text_success_ajax, "Employees have been exported to file: ");
+
+        },error: function(){
+            setText(id_text_success_ajax, "");
+            setText(id_text_fail_ajax, "Employees have not been exported, please check if you chose a proper file with xls extension");
+        }
+    });
+}
+
 //Toggle modal
 function toggleModalWithId (id){
     $('#'+id).modal('toggle');

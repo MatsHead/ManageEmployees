@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.matshead.examapp.excelHandlerPackage.EmployeesExcelHandler;
 import pl.matshead.examapp.model.Address;
 import pl.matshead.examapp.model.Employee;
+import pl.matshead.examapp.model.FileChooser;
 import pl.matshead.examapp.repositories.EmployeeRepository;
 import pl.matshead.examapp.static_values.Position;
 
@@ -75,19 +76,18 @@ public class EmployeeController {
         employeeRepository.deleteById(id);
         return "employees";
     }
-    @GetMapping("/employees/import")
-    public String importToXls(){
+    /*
+        Hard way with forcing java file chooser
+     */
+    @PostMapping("/employees/export")
+    public String importToExcel() throws IOException, WriteException {
         List<Employee> employees = employeeRepository.findAll();
-        System.out.println("***********" + employees.size());
+        FileChooser fileChooser = new FileChooser();
         EmployeesExcelHandler test = new EmployeesExcelHandler();
-        test.setOutputFile("/home/mateusz/workspace/RepositoriesForAkademiaKodu/ExamApp/src/main/resources/static/excel/test-1.xls");
-        try {
-            test.write(employees);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (WriteException e) {
-            e.printStackTrace();
-        }
-        return "employees";
+        test.setInputFile(fileChooser.chooseFile());
+        test.write(employees);
+        return "redirect:/api/employees";
     }
+
+
 }
