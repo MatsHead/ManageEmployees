@@ -5,8 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Embeddable;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 
 /**
  * Class holding some address values
@@ -18,11 +17,20 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Embeddable
 public class Address {
+    @NotNull
+    @Size(min = 3, max = 15)
     private String country;
+    @NotNull
+    @Size(min = 3, max = 15)
     private String city;
+    @NotNull
+    @Size(min = 3, max = 15)
     private String street;
     private String flat;
     private String house;
+    @NotNull
+    @Size(min = 3, max = 15)
     private String zipCode;
+    @Email
     private String email;
 }

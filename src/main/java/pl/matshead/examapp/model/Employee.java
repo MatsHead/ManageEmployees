@@ -8,6 +8,7 @@ import pl.matshead.examapp.model.validator.PersonalIdConstraint;
 import pl.matshead.examapp.static_values.Position;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -27,12 +28,15 @@ public class Employee {
     @Size(min=3, max=30, message="Surname not be empty, provide at least 3 characters")
     private String surname;
     @NotNull(message = "Provide personal identity, format number")
-    // Custom Annotation to valid proper value for personal id
+    /**
+     *  Custom Annotation to valid proper value for personal id
+      */
     @PersonalIdConstraint
     private String personalId;
     /**
      * Address is represents by other object but hold in one table together with Employee
      */
+    @Valid
     @Embedded
     private Address address;
     private Position position;

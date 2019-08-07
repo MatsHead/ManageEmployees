@@ -20,19 +20,24 @@
             <input id= "personalId-field" type ="number"  class="form-control" th:field="*{personalId}" >
             <p class ="text-danger" th:if="${#fields.hasErrors('personalId')}" th:errors="*{personalId}">Name Error</p>
             <label for="country-field" class="col-form-label">Country</label>
-            <input id ="country-field" type ="text" class="form-control" th:field="*{address.country}" required>
+            <input id ="country-field" type ="text" class="form-control" th:field="*{address.country}">
+            <p class ="text-danger" th:if="${#fields.hasErrors('address.country')}" th:errors="*{address.country}">Country Error</p>
             <label for="city-field" class="col-form-label">City</label>
-            <input id ="city-field" type ="text" class="form-control" th:field="*{address.city}" required>
+            <input id ="city-field" type ="text" class="form-control" th:field="*{address.city}">
+            <p class ="text-danger" th:if="${#fields.hasErrors('address.city')}" th:errors="*{address.city}">city Error</p>
             <label for="street-field" class="col-form-label">Street</label>
-            <input id="street-field" type ="text" class="form-control" th:field="*{address.street}" required>
+            <input id="street-field" type ="text" class="form-control" th:field="*{address.street}">
+            <p class ="text-danger" th:if="${#fields.hasErrors('address.street')}" th:errors="*{address.street}">street Error</p>
             <label for="flat-field" class="col-form-label">Flat</label>
             <input id = "flat-field" type ="text" class="form-control" th:field="*{address.flat}">
             <label for="house-field" class="col-form-label">House</label>
             <input id ="house-field" type ="text" class="form-control" th:field="*{address.house}">
             <label for="zipCode-field" class="col-form-label">ZIP code</label>
-            <input id="zipCode-field" type ="text" class="form-control" th:field="*{address.zipCode}" >
+            <input id="zipCode-field" type ="text" class="form-control" th:field="*{address.zipCode}">
+            <p class ="text-danger" th:if="${#fields.hasErrors('address.zipCode')}" th:errors="*{address.zipCode}">zipCode Error</p>
             <label for="email-field" class="col-form-label">Email address</label>
             <input id ="email-field" type ="email" class="form-control" th:field="*{address.email}" required>
+            <p class ="text-danger" th:if="${#fields.hasErrors('address.email')}" th:errors="*{address.email}">email Error</p>
             <div class="form-group">
                 <label for="select-positions">Select list:</label>
                 <select id= "select-positions" class="form-control" th:field="*{position}" required>
